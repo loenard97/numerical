@@ -1,0 +1,6 @@
+#ifndef NUMERICAL_CONSTANTS_H
+#define NUMERICAL_CONSTANTS_H
+
+constexpr float NUMERICAL_CONSTANTS_PI = 3.14159265f;
+
+#endif
