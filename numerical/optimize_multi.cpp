@@ -1,11 +1,13 @@
-#ifndef NUMERICAL_OPTIMIZE_H
-#define NUMERICAL_OPTIMIZE_H
+// optimization routines for multi dimensional functions
+
+#ifndef NUMERICAL_OPTIMIZE_MULTI_H
+#define NUMERICAL_OPTIMIZE_MULTI_H
 
 #include <vector>
 #include "vector.inl"
 
 template <typename T, std::size_t N, typename Func>
-Vector<T, N> numerical_optimize_nelder_mead(Func f, Vector<T, N> p0, std::size_t max_iter) {
+NumericalVector<T, N> numerical_optimize_nelder_mead(Func f, NumericalVector<T, N> p0, std::size_t max_iter) {
     float alpha = 1.0;
     float gamma = 2.0;
     float rho = 0.5;
@@ -14,8 +16,8 @@ Vector<T, N> numerical_optimize_nelder_mead(Func f, Vector<T, N> p0, std::size_t
     std::size_t i;
     std::size_t iter = 0;
     T fr, fe, fc;
-    Vector<T, N> x0, xr, xe, xc;
-    std::vector<Vector<T, N>> simplex = {p0};
+    NumericalVector<T, N> x0, xr, xe, xc;
+    std::vector<NumericalVector<T, N>> simplex = {p0};
     std::vector<T> fsimplex;
 
     // starting simplex

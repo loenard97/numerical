@@ -28,12 +28,17 @@ template <typename T, typename U> void numerical_cosort_vector_insertion(std::ve
 #include "numerical/sort.cpp"
 
 // optimize
-template <typename T, std::size_t N, typename Func> NumericalVector<T, N> numerical_optimize_nelder_mead(Func f, Vector<T, N> p0, std::size_t max_iter);
+template <typename T, typename Func> T numerical_optimize_golden_section(Func f, T lower_bracket, T upper_bracket, T tolerance);
+template <typename T> T numerical_optimize_brent(const T a, const T b, T f(const T), const T tol, const std::size_t max_iter);
 
-#include "numerical/optimize.cpp"
+#include "numerical/optimize_single.cpp"
+
+template <typename T, std::size_t N, typename Func> NumericalVector<T, N> numerical_optimize_nelder_mead(Func f, NumericalVector<T, N> p0, std::size_t max_iter);
+
+#include "numerical/optimize_multi.cpp"
 
 // ordinary differential equations
-template <typename T, typename U, typename V, std::size_t N, typename Func> NumericalVector<T, N> numerical_ode_runge_kutta(U time, U time_step, Vector<T, N> current_state, Func derivative, V params);
+template <typename T, typename U, typename V, std::size_t N, typename Func> NumericalVector<T, N> numerical_ode_runge_kutta(U time, U time_step, NumericalVector<T, N> current_state, Func derivative, V params);
 
 #include "numerical/ode.cpp"
 

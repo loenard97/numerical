@@ -5,8 +5,8 @@
 
 // 4th order Runge-Kutta
 template <typename T, typename U, typename V, std::size_t N, typename Func>
-Vector<T, N> numerical_ode_runge_kutta(U time, U time_step, Vector<T, N> current_state, Func derivative, V params) {
-    Vector<T, N> k1, k2, k3, k4;
+NumericalVector<T, N> numerical_ode_runge_kutta(U time, U time_step, NumericalVector<T, N> current_state, Func derivative, V params) {
+    NumericalVector<T, N> k1, k2, k3, k4;
 
     k1 = derivative(time, current_state, params);
     k2 = derivative(time + time_step / 2.0, current_state + k1 * (time_step / 2.0f), params);
