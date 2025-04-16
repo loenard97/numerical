@@ -1,12 +1,10 @@
-#ifndef NUMERICAL_SORT_H
-#define NUMERICAL_SORT_H
-
 #include <array>
 
 template <typename T, std::size_t N>
 void numerical_sort_array_insertion(std::array<T, N>& arr) {
-    std::size_t j;
-    for (std::size_t i = 1; i < N; ++i) {
+    std::size_t i, j;
+
+    for (i = 1; i < N; ++i) {
         T temp;
         j = i;
         while (j > 0 && arr[j] < arr[j - 1]) {
@@ -20,8 +18,9 @@ void numerical_sort_array_insertion(std::array<T, N>& arr) {
 
 template <typename T, typename U, std::size_t N>
 void numerical_cosort_array_insertion(std::array<T, N>& arr, std::array<U, N>& co_arr) {
-    std::size_t j;
-    for (std::size_t i = 1; i < N; ++i) {
+    std::size_t i, j;
+
+    for (i = 1; i < N; ++i) {
         T temp;
         j = i;
         while (j > 0 && arr[j] < arr[j - 1]) {
@@ -41,9 +40,9 @@ void numerical_cosort_array_insertion(std::array<T, N>& arr, std::array<U, N>& c
 template <typename T, typename U>
 void numerical_cosort_vector_insertion(std::vector<T>& arr, std::vector<U>& co_arr) {
     std::size_t N = arr.size();
-    std::size_t j;
+    std::size_t i, j;
 
-    for (std::size_t i = 1; i < N; ++i) {
+    for (i = 1; i < N; ++i) {
         T temp;
         U co_temp;
         j = i;
@@ -60,5 +59,3 @@ void numerical_cosort_vector_insertion(std::vector<T>& arr, std::vector<U>& co_a
         }
     }
 }
-
-#endif

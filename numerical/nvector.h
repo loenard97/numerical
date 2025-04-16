@@ -1,5 +1,4 @@
-#ifndef NUMERICAL_VECTOR_H
-#define NUMERICAL_VECTOR_H
+#pragma once
 
 #include <array>
 
@@ -27,4 +26,4 @@ public:
     void display() const;
 };
 
-#endif
+#include "nvector.cpp"

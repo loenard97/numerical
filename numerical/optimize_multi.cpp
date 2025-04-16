@@ -1,10 +1,7 @@
 // optimization routines for multi dimensional functions
 
-#ifndef NUMERICAL_OPTIMIZE_MULTI_H
-#define NUMERICAL_OPTIMIZE_MULTI_H
-
 #include <vector>
-#include "vector.inl"
+#include "nvector.h"
 
 template <typename T, std::size_t N, typename Func>
 NumericalVector<T, N> numerical_optimize_nelder_mead(Func f, NumericalVector<T, N> p0, std::size_t max_iter) {
@@ -102,5 +99,3 @@ NumericalVector<T, N> numerical_optimize_nelder_mead(Func f, NumericalVector<T, 
 
     return x0;
 }
-
-#endif

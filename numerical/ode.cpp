@@ -1,9 +1,15 @@
-#ifndef NUMERICAL_ODE_H
-#define NUMERICAL_ODE_H
+/*! \file ode.cpp
+    
+    ordinary differential equation solvers
+*/
 
-#include "vector.h"
+#include "nvector.h"
 
-// 4th order Runge-Kutta
+/*! \fn NumericalVector<T, N> numerical_ode_runge_kutta(U time, U time_step, NumericalVector<T, N> current_state, Func derivative, V params)
+    \param fd The descriptor to close.
+
+    4th order Runge-Kutta.
+*/
 template <typename T, typename U, typename V, std::size_t N, typename Func>
 NumericalVector<T, N> numerical_ode_runge_kutta(U time, U time_step, NumericalVector<T, N> current_state, Func derivative, V params) {
     NumericalVector<T, N> k1, k2, k3, k4;
@@ -15,5 +21,3 @@ NumericalVector<T, N> numerical_ode_runge_kutta(U time, U time_step, NumericalVe
 
     return current_state + (k1 + k2 * 2.0 + k3 * 2.0 + k4) * (time_step / 6.0f);
 }
-
-#endif

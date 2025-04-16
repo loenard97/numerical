@@ -1,5 +1,5 @@
 #include <array>
-#include "vector.h"
+#include "nvector.h"
 
 template <typename T, std::size_t N>
 NumericalVector<T, N>::NumericalVector(std::initializer_list<T> init) {

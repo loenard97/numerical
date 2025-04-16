@@ -1,5 +1,10 @@
-#ifndef NUMERICAL_MATRIX_H
-#define NUMERICAL_MATRIX_H
+/*! \file matrix.h
+    \brief A Documented file.
+    
+    Details.
+*/
+
+#pragma once
 
 #include <iostream>
 #include <array>
@@ -38,6 +43,4 @@ public:
     void display_probabilities() const;
 };
 
-#include "matrix.inl"
-
-#endif
+#include "matrix.cpp"

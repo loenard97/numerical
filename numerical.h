@@ -1,5 +1,4 @@
-#ifndef NUMERICAL_H
-#define NUMERICAL_H
+#pragma once
 
 #include <array>
 #include <cmath>
@@ -7,15 +6,20 @@
 #include <vector>
 
 // constants
-#include "numerical/constants.cpp"
+#include "numerical/constants.h"
 
 // array utils
 template <typename T, std::size_t N> std::array<T, N> numerical_array_linspace(T start, T end);  // new array with N linearly spaced values
 
 #include "numerical/array.cpp"
 
+// integration of functions
+template <typename T, typename Func> T numerical_integrate_romberg(Func f, T a, T b, const std::size_t max_iter, T acc);
+
+#include "numerical/integrate.cpp"
+
 // vector
-#include "numerical/vector.h"
+#include "numerical/nvector.h"
 
 // matrix
 #include "numerical/matrix.h"
@@ -41,5 +45,3 @@ template <typename T, std::size_t N, typename Func> NumericalVector<T, N> numeri
 template <typename T, typename U, typename V, std::size_t N, typename Func> NumericalVector<T, N> numerical_ode_runge_kutta(U time, U time_step, NumericalVector<T, N> current_state, Func derivative, V params);
 
 #include "numerical/ode.cpp"
-
-#endif

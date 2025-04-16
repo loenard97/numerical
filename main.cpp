@@ -40,12 +40,18 @@ double my_func(double x) {
     return (x-1)*(x-2)*(x-3)*(x-4);
 }
 
+double my_sine(double x) {
+    return std::sin(x);
+}
+
 int main() {
-    double lower_bracket = 2.0;
+    double lower_bracket = -2.0;
     double upper_bracket = 5.0;
     double tolerance = 1e-8f;
 
-    double res = numerical_optimize_brent(lower_bracket, upper_bracket, my_func, tolerance, 20);
+    // double res = numerical_optimize_brent(lower_bracket, upper_bracket, my_func, tolerance, 20);
+
+    double res = numerical_integrate_romberg(my_sine, 0.0, NUMERICAL_CONSTANTS_PI_D, 20, tolerance);
 
     // printf("%f\n", tolerance);
     // float res = numerical_optimize_golden_section(func, lower_bracket, upper_bracket, tolerance);

@@ -1,6 +1,3 @@
-#ifndef NUMERICAL_MATRIX_INL
-#define NUMERICAL_MATRIX_INL
-
 #include "matrix.h"
 
 template <typename T, std::size_t M, std::size_t N>
@@ -179,5 +176,3 @@ void NumericalMatrix<T, M, N>::display_probabilities() const {
     }
     std::cout << "\n";
 }
-
-#endif

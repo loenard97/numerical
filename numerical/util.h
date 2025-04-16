@@ -1,5 +1,4 @@
-#ifndef NUMERICAL_UTIL_H
-#define NUMERICAL_UTIL_H
+#pragma once
 
 #define NUMERICAL_UTIL_ABS(a) ((a < 0) ? (-a) : (a))
 #define NUMERICAL_UTIL_SWAP SWAP(x, y, T) do { T SWAP = x; x = y; y = SWAP; } while (0)
@@ -24,5 +23,3 @@ T numerical_util_sign(T value) {
     }
     return static_cast<T>(-1);
 }
-
-#endif

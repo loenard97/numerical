@@ -1,2 +1,5 @@
+/html
+/latex
+*/__pycache__/*
 .vscode
 *.exe
