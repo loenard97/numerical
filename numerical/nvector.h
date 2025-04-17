@@ -2,28 +2,30 @@
 
 #include <array>
 
-template <typename T, std::size_t N>
-class NumericalVector {
-private:
-    std::array<T, N> components{};
+namespace numerical {
+    template <typename T, std::size_t N>
+    class NVector {
+    private:
+        std::array<T, N> components{};
 
-public:
-    NumericalVector() = default;
-    NumericalVector(std::initializer_list<T> init);
-    NumericalVector clone() const;
+    public:
+        NVector() = default;
+        NVector(std::initializer_list<T> init);
+        NVector clone() const;
 
-    T& operator[](std::size_t index);
-    const T& operator[](std::size_t index) const;
+        T& operator[](std::size_t index);
+        const T& operator[](std::size_t index) const;
 
-    NumericalVector operator+(const NumericalVector& other) const;
-    NumericalVector operator-(const NumericalVector& other) const;
-    NumericalVector operator*(T scalar) const;
+        NVector operator+(const NVector& other) const;
+        NVector operator-(const NVector& other) const;
+        NVector operator*(T scalar) const;
 
-    T dot(const NumericalVector& other) const;
-    T magnitude() const;
-    NumericalVector normalize() const;
-    std::size_t dim() const;
-    void display() const;
-};
+        T dot(const NVector& other) const;
+        T magnitude() const;
+        NVector normalize() const;
+        std::size_t dim() const;
+        void display() const;
+    };
+}
 
 #include "nvector.cpp"

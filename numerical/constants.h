@@ -1,5 +1,9 @@
 #pragma once
 
-constexpr float NUMERICAL_CONSTANTS_PI = 3.14159265;
-constexpr double NUMERICAL_CONSTANTS_PI_D = 3.141592653589793;
-constexpr float NUMERICAL_CONSTANTS_PHI = 1.618033988749894848204586834365638118;
+namespace numerical {
+    namespace constants {
+        constexpr float pi = 3.14159265;
+        constexpr double pi_double = 3.141592653589793;
+        constexpr float phi = 1.618033988749894848204586834365638118;
+    }
+}
