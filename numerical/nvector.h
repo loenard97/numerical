@@ -12,6 +12,7 @@ namespace numerical {
         NVector() = default;
         NVector(std::initializer_list<T> init);
         NVector clone() const;
+        static NVector zero();
 
         T& operator[](std::size_t index);
         const T& operator[](std::size_t index) const;

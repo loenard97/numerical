@@ -5,14 +5,13 @@
 #include <vector>
 #include <cstddef>
 
+#include "numerical/optimize/optimize.h"
+#include "numerical/sort/sort.h"
 #include "numerical/array.cpp"
 #include "numerical/constants.h"
 #include "numerical/integrate.cpp"
 #include "numerical/nvector.h"
 #include "numerical/matrix.h"
-#include "numerical/sort.cpp"
-#include "numerical/optimize_single.cpp"
-#include "numerical/optimize_multi.cpp"
 #include "numerical/ode.cpp"
 
 namespace numerical {
@@ -38,7 +37,8 @@ namespace numerical {
         template <typename T, typename Func> OptimizeResult<T> golden_section(Func function, const T lower_bracket, const T upper_bracket, const T tolerance, const std::size_t max_iterations);
         template <typename T, typename Func> OptimizeResult<T> brent(Func function, const T lower_bracket, const T upper_bracket, const T tolerance, const std::size_t max_iterations);
 
-        template <typename T, std::size_t N, typename Func> NVector<T, N> nelder_mead(Func f, NVector<T, N> p0, std::size_t max_iter);
+        template <typename T, typename Func, std::size_t N> NVector<T, N> nelder_mead(Func function, const NVector<T, N> p0, const std::size_t max_iterations);
+        template <typename T, typename Func, std::size_t N> NOptimizeResult<T, N> powell(Func function, const NVector<T, N> p0, const std::size_t max_iterations);
     }
 
     // ordinary differential equations

@@ -1,13 +1,12 @@
-// optimization routines for multi dimensional functions
-
 #include <vector>
 
-#include "nvector.h"
+#include "../nvector.h"
+#include "../sort/sort.h"
 
 namespace numerical {
     namespace optimize {
-        template <typename T, std::size_t N, typename Func>
-        NVector<T, N> nelder_mead(Func f, NVector<T, N> p0, std::size_t max_iter) {
+        template <typename T, typename Func, std::size_t N>
+        NVector<T, N> nelder_mead(Func function, const NVector<T, N> p0, const std::size_t max_iterations) {
             float alpha = 1.0;
             float gamma = 2.0;
             float rho = 0.5;
@@ -27,15 +26,15 @@ namespace numerical {
                 simplex.push_back(x0);
             }
         
-            while (iter < max_iter) {
+            while (iter < max_iterations) {
                 iter += 1;
         
                 // evaluate function at each simplex point
                 fsimplex.clear();
                 for (const auto& val : simplex) {
-                    fsimplex.push_back(f(val));
+                    fsimplex.push_back(function(val));
                 }
-                cosort_vector_insertion(fsimplex, simplex);
+                sort::cosort_vector_insertion(fsimplex, simplex);
         
                 // compute centoid
                 for (i = 0; i < N; ++i) {
@@ -44,11 +43,11 @@ namespace numerical {
                 for (i = 0; i < N + 1; ++i) {
                     x0 = x0 + simplex.at(i);
                 }
-                x0 = x0 * (1.0 / (T) (N + 1));
+                x0 = x0 * (1.0 / (T) N);
         
                 // reflect
                 xr = x0 + (x0 - simplex.at(N)) * alpha;
-                fr = f(xr);
+                fr = function(xr);
                 if (fsimplex.at(0) <= fr && fr <= fsimplex.at(N - 1)) {
                     simplex.at(N) = xr;
                     continue;
@@ -57,7 +56,7 @@ namespace numerical {
                 // expand
                 if (fr < fsimplex.at(0)) {
                     xe = x0 + (xr - x0) * gamma;
-                    fe = f(xe);
+                    fe = function(xe);
                     if (fe < fr) {
                         simplex.at(N) = xe;
                     } else {
@@ -70,7 +69,7 @@ namespace numerical {
                 if (fr < fsimplex.at(N)) {
                     // contract outside
                     xc = x0 + (xr - x0) * rho;
-                    fc = f(xc);
+                    fc = function(xc);
                     if (fc < fr) {
                         simplex.at(N) = xc;
                         continue;
@@ -78,7 +77,7 @@ namespace numerical {
                 } else {
                     // contract inside
                     xc = x0 + (simplex.at(N) - x0) * rho;
-                    fc = f(xc);
+                    fc = function(xc);
                     if (fc < fsimplex.at(N)) {
                         simplex.at(N) = xc;
                         continue;
@@ -98,7 +97,7 @@ namespace numerical {
             for (i = 0; i < N + 1; ++i) {
                 x0 = x0 + simplex.at(i);
             }
-            x0 = x0 * (1.0 / (T) (N + 1));
+            x0 = x0 * (1.0 / (T) N);
         
             return x0;
         }

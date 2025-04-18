@@ -26,9 +26,20 @@ namespace numerical {
     }
 
     template <typename T, std::size_t N>
+    NVector<T, N> NVector<T, N>::zero() {
+        NVector<T, N> new_vec;
+
+        for (std::size_t i = 0; i < N; ++i) {
+            new_vec[i] = static_cast<T>(0);
+        }
+
+        return new_vec;
+    }
+
+    template <typename T, std::size_t N>
     T& NVector<T, N>::operator[](std::size_t index) {
         if (index >= N) {
-            throw std::out_of_range("NumericalVector index out of bounds");
+            throw std::out_of_range("NVector index out of bounds");
         }
         return components[index];
     }
@@ -98,7 +109,7 @@ namespace numerical {
 
     template <typename T, std::size_t N>
     void NVector<T, N>::display() const {
-        std::cout << "NumericalVector(";
+        std::cout << "NVector(";
         for (std::size_t i = 0; i < N; ++i) {
             std::cout << components[i] << (i < N - 1 ? ", " : "");
         }
