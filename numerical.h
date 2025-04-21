@@ -5,6 +5,7 @@
 #include <vector>
 #include <cstddef>
 
+#include "numerical/fft/fft.h"
 #include "numerical/optimize/optimize.h"
 #include "numerical/random/xorshift.h"
 #include "numerical/sort/sort.h"

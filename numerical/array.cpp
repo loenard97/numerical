@@ -1,6 +1,6 @@
 #include <array>
 
-namespace lib {
+namespace numerical {
     namespace array {
         //! Array linspace
         //!
