@@ -6,6 +6,7 @@
 #include <cstddef>
 
 #include "numerical/optimize/optimize.h"
+#include "numerical/random/xorshift.h"
 #include "numerical/sort/sort.h"
 #include "numerical/array.cpp"
 #include "numerical/constants.h"
