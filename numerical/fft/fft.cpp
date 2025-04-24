@@ -40,7 +40,7 @@ namespace numerical {
             for (k = 0; k < order; ++k) {
                 offset = std::pow(2, k);
                 step = 2 * offset;
-                multiplier = (size / step);
+                multiplier = size / step;
                 for (i = 0; i < size; i += step) {
                     for (j = 0; j < offset; ++j) {
                         p = arr[i + j];

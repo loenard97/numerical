@@ -3,7 +3,7 @@
     ordinary differential equation solvers
 */
 
-#include "nvector.h"
+#include "../nvector.h"
 
 namespace numerical {
     namespace ode {
