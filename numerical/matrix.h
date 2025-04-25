@@ -1,9 +1,3 @@
-/*! \file matrix.h
-    \brief A Documented file.
-    
-    Details.
-*/
-
 #pragma once
 
 #include <array>
@@ -24,6 +18,7 @@ namespace numerical {
         const T& operator()(std::size_t row, std::size_t col) const;
 
         Matrix operator+(const Matrix& other) const;
+        Matrix operator-(const Matrix& other) const;
         Matrix operator*(T scalar) const;
         template <std::size_t P> Matrix<T, M, P> operator*(const Matrix<T, N, P>& other) const;
 
@@ -37,6 +32,9 @@ namespace numerical {
         std::size_t cols() const;
         void display() const;
         void display_probabilities() const;
+
+        Matrix commute(Matrix rhs);
+        Matrix anticommute(Matrix rhs);
     };
 }
 

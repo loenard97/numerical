@@ -5,6 +5,7 @@
 #include "numerical/integrate/integrate.h"
 #include "numerical/ode/ode.h"
 #include "numerical/optimize/optimize.h"
+#include "numerical/quantum/quantum.h"
 #include "numerical/random/xorshift.h"
 #include "numerical/sort/sort.h"
 #include "numerical/constants.h"
