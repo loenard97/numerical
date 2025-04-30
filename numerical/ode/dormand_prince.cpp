@@ -45,7 +45,8 @@ namespace numerical {
             std::vector<NVector<T, N>> data_k5;
             std::vector<NVector<T, N>> data_k6;
 
-            DormandPrince() = default;
+            // DormandPrince() = default;
+            DormandPrince() {};
 
             template <typename Func>
             void run(Func derivative, NVector<T, N> y, double step_size, const double tolerance, const double t_start, const double t_end, const bool full_output, const bool dense_output) {

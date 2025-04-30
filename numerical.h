@@ -9,6 +9,6 @@
 #include "numerical/random/xorshift.h"
 #include "numerical/sort/sort.h"
 #include "numerical/constants.h"
-#include "numerical/matrix.h"
+#include "numerical/mnmatrix.h"
 #include "numerical/nvector.h"
 #include "numerical/util.h"

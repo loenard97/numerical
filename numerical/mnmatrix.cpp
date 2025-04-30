@@ -5,11 +5,11 @@
 #include <iostream>
 #include <array>
 
-#include "matrix.h"
+#include "mnmatrix.h"
 
 namespace numerical {
     template <typename T, std::size_t M, std::size_t N>
-    Matrix<T, M, N>::Matrix(std::initializer_list<T> init) {
+    MNMatrix<T, M, N>::MNMatrix(std::initializer_list<T> init) {
         std::size_t i = 0;
         for (auto val : init) {
             if (i < N * M) {
@@ -19,8 +19,8 @@ namespace numerical {
     }
 
     template <typename T, std::size_t M, std::size_t N>
-    Matrix<T, M, N> Matrix<T, M, N>::zero() {
-        Matrix<T, N, M> mat;
+    MNMatrix<T, M, N> MNMatrix<T, M, N>::zero() {
+        MNMatrix<T, N, M> mat;
         for (std::size_t i = 0; i < N; ++i) {
             for (std::size_t j = 0; j < M; ++j) {
                 mat(i, j) = static_cast<T>(0);
@@ -30,8 +30,8 @@ namespace numerical {
     }
 
     template <typename T, std::size_t M, std::size_t N>
-    Matrix<T, M, N> Matrix<T, M, N>::one() {
-        Matrix<T, N, M> mat;
+    MNMatrix<T, M, N> MNMatrix<T, M, N>::one() {
+        MNMatrix<T, N, M> mat;
         for (std::size_t i = 0; i < N; ++i) {
             for (std::size_t j = 0; j < M; ++j) {
                 if (i == j) {
@@ -45,30 +45,30 @@ namespace numerical {
     }
 
     template <typename T, std::size_t M, std::size_t N>
-    T& Matrix<T, M, N>::operator()(std::size_t row, std::size_t col) {
+    T& MNMatrix<T, M, N>::operator()(std::size_t row, std::size_t col) {
         if (row >= M || col >= N) {
-            throw std::out_of_range("Matrix index out of bounds");
+            throw std::out_of_range("MNMatrix index out of bounds");
         }
         
         return components[row * N + col];
     }
 
     template <typename T, std::size_t M, std::size_t N>
-    const T& Matrix<T, M, N>::operator()(std::size_t row, std::size_t col) const {
+    const T& MNMatrix<T, M, N>::operator()(std::size_t row, std::size_t col) const {
         if (row >= M || col >= N) {
-            throw std::out_of_range("Matrix index out of bounds");
+            throw std::out_of_range("MNMatrix index out of bounds");
         }
 
         return components[row * N + col];
     }
 
     template <typename T, std::size_t M, std::size_t N>
-    Matrix<T, M, N> Matrix<T, M, N>::operator+(const Matrix& other) const {
+    MNMatrix<T, M, N> MNMatrix<T, M, N>::operator+(const MNMatrix& other) const {
         if ((*this).rows() != other.rows() ||(*this).cols() != other.cols()) {
-            throw std::invalid_argument("Matrix dimensions are not valid");
+            throw std::invalid_argument("MNMatrix dimensions are not valid");
         }
 
-        Matrix result;
+        MNMatrix result;
         for (std::size_t row = 0; row < M; ++row) {
             for (std::size_t col = 0; col < N; ++col) {
                 result(row, col) = (*this)(row, col) + other(row, col);
@@ -78,12 +78,12 @@ namespace numerical {
     }
 
     template <typename T, std::size_t M, std::size_t N>
-    Matrix<T, M, N> Matrix<T, M, N>::operator-(const Matrix& other) const {
+    MNMatrix<T, M, N> MNMatrix<T, M, N>::operator-(const MNMatrix& other) const {
         if ((*this).rows() != other.rows() ||(*this).cols() != other.cols()) {
-            throw std::invalid_argument("Matrix dimensions are not valid");
+            throw std::invalid_argument("MNMatrix dimensions are not valid");
         }
 
-        Matrix result;
+        MNMatrix result;
         for (std::size_t row = 0; row < M; ++row) {
             for (std::size_t col = 0; col < N; ++col) {
                 result(row, col) = (*this)(row, col) - other(row, col);
@@ -93,8 +93,8 @@ namespace numerical {
     }
 
     template <typename T, std::size_t M, std::size_t N>
-    Matrix<T, M, N> Matrix<T, M, N>::operator*(T scalar) const {
-        Matrix result;
+    MNMatrix<T, M, N> MNMatrix<T, M, N>::operator*(T scalar) const {
+        MNMatrix result;
         for (std::size_t row = 0; row < M; ++row) {
             for (std::size_t col = 0; col < N; ++col) {
                 result(row, col) = (*this)(row, col) * scalar;
@@ -104,9 +104,14 @@ namespace numerical {
     }
 
     template <typename T, std::size_t M, std::size_t N>
+    MNMatrix<T, M, N> operator*(T scalar, const MNMatrix<T, M, N>& matrix) {
+        return matrix * scalar;
+    }
+
+    template <typename T, std::size_t M, std::size_t N>
     template <std::size_t P>
-    Matrix<T, M, P> Matrix<T, M, N>::operator*(const Matrix<T, N, P>& other) const {
-        Matrix<T, M, P> result;
+    MNMatrix<T, M, P> MNMatrix<T, M, N>::operator*(const MNMatrix<T, N, P>& other) const {
+        MNMatrix<T, M, P> result;
         for (std::size_t row = 0; row < M; ++row) {
             for (std::size_t col = 0; col < P; ++col) {
                 result(row, col) = static_cast<T>(0);
@@ -119,7 +124,7 @@ namespace numerical {
     }
 
     template <typename T, std::size_t M, std::size_t N>
-    T Matrix<T, M, N>::norm() {
+    T MNMatrix<T, M, N>::norm() {
         T norm = static_cast<T>(0);
         for (std::size_t row = 0; row < M; ++row) {
             for (std::size_t col = 0; col < N; ++col) {
@@ -130,7 +135,7 @@ namespace numerical {
     }
 
     template <typename T, std::size_t M, std::size_t N>
-    T Matrix<T, M, N>::trace() const {
+    T MNMatrix<T, M, N>::trace() const {
         if (M != N) {
             throw std::invalid_argument("Trace not defined for M != N matrices");
         }
@@ -143,8 +148,8 @@ namespace numerical {
     }
 
     template <typename T, std::size_t M, std::size_t N>
-    Matrix<T, N, M> Matrix<T, M, N>::trans() const {
-        Matrix<T, N, M> result;
+    MNMatrix<T, N, M> MNMatrix<T, M, N>::trans() const {
+        MNMatrix<T, N, M> result;
         for (std::size_t row = 0; row < M; ++row) {
             for (std::size_t col = 0; col < N; ++col) {
                 result(col, row) = (*this)(row, col);
@@ -154,8 +159,8 @@ namespace numerical {
     }
 
     template <typename T, std::size_t M, std::size_t N>
-    Matrix<T, M, N> Matrix<T, M, N>::conj() const {
-        Matrix result;
+    MNMatrix<T, M, N> MNMatrix<T, M, N>::conj() const {
+        MNMatrix result;
         for (std::size_t row = 0; row < M; ++row) {
             for (std::size_t col = 0; col < N; ++col) {
                 result(row, col) = std::conj((*this)(row, col));
@@ -165,23 +170,23 @@ namespace numerical {
     }
 
     template <typename T, std::size_t M, std::size_t N>
-    Matrix<T, N, M> Matrix<T, M, N>::dag() const {
+    MNMatrix<T, N, M> MNMatrix<T, M, N>::dag() const {
         return (*this).conj().trans();
     }
 
     template <typename T, std::size_t M, std::size_t N>
-    std::size_t Matrix<T, M, N>::rows() const {
+    std::size_t MNMatrix<T, M, N>::rows() const {
         return M;
     }
 
     template <typename T, std::size_t M, std::size_t N>
-    std::size_t Matrix<T, M, N>::cols() const {
+    std::size_t MNMatrix<T, M, N>::cols() const {
         return N;
     }
 
     template <typename T, std::size_t M, std::size_t N>
-    void Matrix<T, M, N>::display() const {
-        std::cout << "Matrix<" << (*this).rows() << "x" << (*this).cols() << ">(\n";
+    void MNMatrix<T, M, N>::display() const {
+        std::cout << "MNMatrix<" << (*this).rows() << "x" << (*this).cols() << ">(\n";
         for (std::size_t row = 0; row < M; ++row) {
             std::cout << "  ";
             for (std::size_t col = 0; col < N; ++col) {
@@ -193,7 +198,7 @@ namespace numerical {
     }
 
     template <typename T, std::size_t M, std::size_t N>
-    void Matrix<T, M, N>::display_probabilities() const {
+    void MNMatrix<T, M, N>::display_probabilities() const {
         for (std::size_t i = 0; i < M * N; ++i) {
             std::cout << std::abs(components[i] * std::conj(components[i])) << ((i + 1 < M * N) ? ", " : " ");
         }
@@ -201,12 +206,12 @@ namespace numerical {
     }
 
     template <typename T, std::size_t M, std::size_t N>
-    Matrix<T, M, N> Matrix<T, M, N>::commute(Matrix<T, M, N> rhs) {
+    MNMatrix<T, M, N> MNMatrix<T, M, N>::commute(MNMatrix<T, M, N> rhs) {
         return (*this) * rhs - rhs * (*this);
     }
 
     template <typename T, std::size_t M, std::size_t N>
-    Matrix<T, M, N> Matrix<T, M, N>::anticommute(Matrix<T, M, N> rhs) {
+    MNMatrix<T, M, N> MNMatrix<T, M, N>::anticommute(MNMatrix<T, M, N> rhs) {
         return (*this) * rhs + rhs * (*this);
     }
 }
