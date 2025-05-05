@@ -2,6 +2,7 @@
 
 #include "numerical/array/array.h"
 #include "numerical/fft/fft.h"
+#include "numerical/function/function.h"
 #include "numerical/integrate/integrate.h"
 #include "numerical/ode/ode.h"
 #include "numerical/optimize/optimize.h"

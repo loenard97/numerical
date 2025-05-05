@@ -5,3 +5,5 @@
 *.exe
 main.cpp
 main.py
+test.cpp
+temp.cpp

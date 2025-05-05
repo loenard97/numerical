@@ -25,7 +25,9 @@ namespace numerical {
         T magnitude() const;
         NVector normalize() const;
         std::size_t dim() const;
+        std::size_t size() const;
         void display() const;
+        void display_csv() const;
     };
 }
 

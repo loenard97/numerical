@@ -11,6 +11,12 @@ namespace numerical {
             T x;
             T fx;
             std::size_t iterations;
+
+            void display() {
+                printf("OptimizeResult\n");
+                printf("\tx:  %f\n", x);
+                printf("\tfx: %f\n", fx);
+            }
         };
 
         template <typename T, std::size_t N>

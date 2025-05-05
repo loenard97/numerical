@@ -30,7 +30,9 @@ namespace numerical {
         MNMatrix<T, N, M> dag() const;
         std::size_t rows() const;
         std::size_t cols() const;
+        std::size_t size() const;
         void display() const;
+        void display_csv() const;
         void display_probabilities() const;
 
         MNMatrix commute(MNMatrix rhs);

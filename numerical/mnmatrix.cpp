@@ -185,6 +185,11 @@ namespace numerical {
     }
 
     template <typename T, std::size_t M, std::size_t N>
+    std::size_t MNMatrix<T, M, N>::size() const {
+        return M * N;
+    }
+
+    template <typename T, std::size_t M, std::size_t N>
     void MNMatrix<T, M, N>::display() const {
         std::cout << "MNMatrix<" << (*this).rows() << "x" << (*this).cols() << ">(\n";
         for (std::size_t row = 0; row < M; ++row) {
@@ -195,6 +200,16 @@ namespace numerical {
             std::cout << "\n";
         }
         std::cout << ")\n";
+    }
+
+    template <typename T, std::size_t M, std::size_t N>
+    void MNMatrix<T, M, N>::display_csv() const {
+        std::size_t i;
+        std::size_t size = (*this).components.size();
+
+        for (i = 0; i < size; ++i) {
+            std::cout << std::real((*this).components[i]) << ", " << std::imag((*this).components[i]) << (i < size - 1 ? ", " : "");
+        }
     }
 
     template <typename T, std::size_t M, std::size_t N>

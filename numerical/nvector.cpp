@@ -108,11 +108,26 @@ namespace numerical {
     }
 
     template <typename T, std::size_t N>
+    std::size_t NVector<T, N>::size() const {
+        return N;
+    }
+
+    template <typename T, std::size_t N>
     void NVector<T, N>::display() const {
         std::cout << "NVector(";
         for (std::size_t i = 0; i < N; ++i) {
             std::cout << components[i] << (i < N - 1 ? ", " : "");
         }
         std::cout << ")\n";
+    }
+
+    template <typename T, std::size_t N>
+    void NVector<T, N>::display_csv() const {
+        std::size_t i;
+        std::size_t size = (*this).components.size();
+
+        for (i = 0; i < size; ++i) {
+            std::cout << (*this).components[i] << (i < size - 1 ? ", " : "");
+        }
     }
 }
