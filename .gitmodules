@@ -4,3 +4,6 @@
 [submodule "autodiff"]
 	path = autodiff
 	url = https://github.com/autodiff/autodiff.git
+[submodule "nlopt"]
+	path = nlopt
+	url = https://github.com/stevengj/nlopt.git

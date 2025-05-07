@@ -43,6 +43,9 @@ namespace numerical {
                 time += t_step;
             }
 
+            result.end_time = time;
+            result.end_y = y;
+
             return result;
         }
     }

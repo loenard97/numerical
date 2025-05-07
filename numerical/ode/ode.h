@@ -15,6 +15,8 @@ namespace numerical {
         template<typename U, typename T>
         class ODEResult {
         public:
+            U end_time;
+            T end_y;
             std::vector<U> dense_time;
             std::vector<T> dense_y;
 
