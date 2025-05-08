@@ -27,5 +27,5 @@ Add `C:\Program Files (x86)\nlopt\bin` to your PATH.
 
 Link when compiling
 ```
-g++ .\main.cpp -I"C:\Users\Dennis\Documents\Projekte\numerical" -I"C:\Program Files (x86)\nlopt\include" -L"C:\Program Files (x86)\nlopt\bin" -lnlopt -std=c++17 -o main
+g++ .\main.cpp -I"<path-to\numerical>" -I"C:\Program Files (x86)\nlopt\include" -L"C:\Program Files (x86)\nlopt\bin" -lnlopt -std=c++17 -o main
 ```
