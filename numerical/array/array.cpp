@@ -1,6 +1,7 @@
 #include <array>
 #include <vector>
 #include <cmath>
+#include <stdexcept>
 
 namespace numerical {
     namespace array {
